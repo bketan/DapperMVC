@@ -7,6 +7,7 @@ ProductID int primary key identity,
 ProductName nvarchar(50) not null,
 ProductDesc nvarchar(100) not null,
 Price int, Qty int )
+
 2] Stored Procedures are created
  a) Stored Procedure for Adding records ->
     create procedure sp_create_product
@@ -14,35 +15,46 @@ Price int, Qty int )
     as begin
 	  insert into dbo.Product (ProductName,ProductDesc,Price,Qty) values (@ProductName,@ProductDesc,@price,@Qty) 
 	  end
+	  
 b) Stored Procedure for updating records ->
   create procedure sp_update_product
   (@ProductID int,@ProductName nvarchar(50), @ProductDesc nvarchar(100), @price int, @Qty int)
   as begin
 	update dbo.Product set ProductName = @ProductName,ProductDesc=@ProductDesc,Price=@Price, Qty=@Qty where ProductID = @ProductID
 	end
+	
 c) Stored Procedure for retrieving single record ->
   create procedure sp_get_product
   (@ProductID int)
   as begin
 	select * from dbo.Product where ProductID = @ProductID
 	end
+	
 d) Stored Procedure for retrieving all records ->
   create procedure sp_get_products
   as begin
 	select * from dbo.Product
 	end
+	
 e) Stored Procedure for deleting a record ->
   create procedure sp_delete_product
   (@ProductID int)
   as begin
 	delete from dbo.Product where ProductID = @ProductID
 	end
+	
  3] Connection String for connecting database with backend is written in appsetting.json file
+ 
  4] Dapper and other required packages are installed
+ 
  5] Create a new folder inside the project name called “Models” and add a new class which should have product’s id, name, Qty and price. 
+ 
  6] Repository Interface is created and all methods are overridden in the corresponding class.
+ 
  7] Controller class is written then finally
+ 
  8] Views are created which will display our records on frontend.
+ 
  SNAPSHOTS of the Projects =>
  
  ![DapperMVC — Mozilla Firefox 20-06-2023 00_24_41](https://github.com/bketan/DapperMVC/assets/113464974/ca01daed-19ea-4299-be31-45399bccfb5a)
